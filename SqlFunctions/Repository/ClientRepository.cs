@@ -87,6 +87,5 @@ namespace SqlFunctions.Repository
             var client = await con.QueryAsync<Client>(query, parameters);
             return client;
         }
-
     }
 }

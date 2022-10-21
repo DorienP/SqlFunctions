@@ -34,8 +34,9 @@ namespace SqlFunctions
         {
             try
             {
-                var schools = await _clientRepository.GetAllClients();
-                return new OkObjectResult(schools);
+                Console.WriteLine(req.Body.ToString(), log);
+                var clients = await _clientRepository.GetAllClients();
+                return new OkObjectResult(clients);
             }
             catch (Exception ex)
             {
@@ -65,7 +66,7 @@ namespace SqlFunctions
             }
         }
 
-        [FunctionName("GetClientByFirstName")]
+        [FunctionName("GetClientsByFirstName")]
         public async Task<IActionResult> GetClientsByFirstName(
         [HttpTrigger(AuthorizationLevel.Function, "get", Route = null)] HttpRequest req,
         ILogger log)
@@ -86,7 +87,7 @@ namespace SqlFunctions
             }
         }
 
-        [FunctionName("GetClientByLastName")]
+        [FunctionName("GetClientsByLastName")]
         public async Task<IActionResult> GetClientsByLastName(
         [HttpTrigger(AuthorizationLevel.Function, "get", Route = null)] HttpRequest req,
         ILogger log)
@@ -107,7 +108,7 @@ namespace SqlFunctions
             }
         }
 
-        [FunctionName("GetClientByEmail")]
+        [FunctionName("GetClientsByEmail")]
         public async Task<IActionResult> GetClientsByEmail(
         [HttpTrigger(AuthorizationLevel.Function, "get", Route = null)] HttpRequest req,
         ILogger log)
@@ -128,7 +129,7 @@ namespace SqlFunctions
             }
         }
 
-        [FunctionName("GetClientByIpAddress")]
+        [FunctionName("GetClientsByIpAddress")]
         public async Task<IActionResult> GetClientsByIpAddress(
         [HttpTrigger(AuthorizationLevel.Function, "get", Route = null)] HttpRequest req,
         ILogger log)
