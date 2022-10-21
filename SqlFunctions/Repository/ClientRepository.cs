@@ -42,10 +42,10 @@ namespace SqlFunctions.Repository
 
         async Task<IEnumerable<Client>> IClientRepository.GetClientsByFirstName(string firstName)
         {
-            var query = "SELECT * FROM Clients WHERE CONTAINS(first_name, @FirstName)";
+            var query = "SELECT * FROM Clients WHERE first_name LIKE @FirstName";
 
             var parameters = new DynamicParameters();
-            parameters.Add("FirstName", firstName, DbType.String);
+            parameters.Add("FirstName", '%' + firstName + '%', DbType.String);
 
             using var con = _ClientContext.CreateConnection();
             var client = await con.QueryAsync<Client>(query, parameters);
@@ -54,10 +54,10 @@ namespace SqlFunctions.Repository
 
         async Task<IEnumerable<Client>> IClientRepository.GetClientsByLastName(string lastName)
         {
-            var query = "SELECT * FROM Clients WHERE CONTAINS(last_name, @LastName)";
+            var query = "SELECT * FROM Clients WHERE last_name LIKE @LastName";
 
             var parameters = new DynamicParameters();
-            parameters.Add("LastName", lastName, DbType.String);
+            parameters.Add("LastName", '%' + lastName + '%', DbType.String);
 
             using var con = _ClientContext.CreateConnection();
             var client = await con.QueryAsync<Client>(query, parameters);
@@ -66,10 +66,10 @@ namespace SqlFunctions.Repository
 
         async Task<IEnumerable<Client>> IClientRepository.GetClientsByEmail(string email)
         {
-            var query = "SELECT * FROM Clients WHERE CONTAINS(email, @Email)";
+            var query = "SELECT * FROM Clients WHERE email LIKE @Email";
 
             var parameters = new DynamicParameters();
-            parameters.Add("Email", email, DbType.String);
+            parameters.Add("Email", '%' + email + '%', DbType.String);
 
             using var con = _ClientContext.CreateConnection();
             var client = await con.QueryAsync<Client>(query, parameters);
@@ -78,10 +78,10 @@ namespace SqlFunctions.Repository
 
         async Task<IEnumerable<Client>> IClientRepository.GetClientsByIpAddress(string ipAddress)
         {
-            var query = "SELECT * FROM Clients WHERE CONTAINS(ip_address, @IpAddress)";
+            var query = "SELECT * FROM Clients WHERE ip_address LIKE @IpAddress";
 
             var parameters = new DynamicParameters();
-            parameters.Add("IpAddress", ipAddress, DbType.String);
+            parameters.Add("IpAddress", '%' + ipAddress + '%', DbType.String);
 
             using var con = _ClientContext.CreateConnection();
             var client = await con.QueryAsync<Client>(query, parameters);
