@@ -134,13 +134,13 @@ namespace SqlFunctions
         [HttpTrigger(AuthorizationLevel.Function, "get", Route = null)] HttpRequest req,
         ILogger log)
         {
-            string ipAddress = req.Query["ipAddress"];
+            string ipAddress = req.Query["ip_address"];
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
             dynamic data = JsonConvert.DeserializeObject(requestBody);
             ipAddress = ipAddress ?? data?.ipAddress;
             try
             {
-                var schools = await _clientRepository.GetClientsByEmail(ipAddress);
+                var schools = await _clientRepository.GetClientsByIpAddress(ipAddress);
                 return new OkObjectResult(schools);
             }
             catch (Exception ex)
