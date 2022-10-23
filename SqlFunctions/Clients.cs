@@ -89,7 +89,7 @@ namespace SqlFunctions
 
         [FunctionName("GetClientsByLastName")]
         public async Task<IActionResult> GetClientsByLastName(
-        [HttpTrigger(AuthorizationLevel.Function, "get", Route = null)] HttpRequest req,
+        [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequest req,
         ILogger log)
         {
             string lastName = req.Query["last_name"];
@@ -110,7 +110,7 @@ namespace SqlFunctions
 
         [FunctionName("GetClientsByEmail")]
         public async Task<IActionResult> GetClientsByEmail(
-        [HttpTrigger(AuthorizationLevel.Function, "get", Route = null)] HttpRequest req,
+        [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequest req,
         ILogger log)
         {
             string email = req.Query["email"];
@@ -131,7 +131,7 @@ namespace SqlFunctions
 
         [FunctionName("GetClientsByIpAddress")]
         public async Task<IActionResult> GetClientsByIpAddress(
-        [HttpTrigger(AuthorizationLevel.Function, "get", Route = null)] HttpRequest req,
+        [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequest req,
         ILogger log)
         {
             string ipAddress = req.Query["ip_address"];
