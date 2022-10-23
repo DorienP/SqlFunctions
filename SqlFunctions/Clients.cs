@@ -29,7 +29,7 @@ namespace SqlFunctions
 
         [FunctionName("GetAllClients")]
         public async Task<IActionResult> GetAllClients(
-            [HttpTrigger(AuthorizationLevel.Function, "get", Route = null)] HttpRequest req,
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequest req,
             ILogger log)
         {
             try
@@ -47,7 +47,7 @@ namespace SqlFunctions
 
         [FunctionName("GetClientById")]
         public async Task<IActionResult> GetClientById(
-        [HttpTrigger(AuthorizationLevel.Function, "get", Route = null)] HttpRequest req,
+        [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequest req,
         ILogger log)
         {
             string id = req.Query["id"];
@@ -68,7 +68,7 @@ namespace SqlFunctions
 
         [FunctionName("GetClientsByFirstName")]
         public async Task<IActionResult> GetClientsByFirstName(
-        [HttpTrigger(AuthorizationLevel.Function, "get", Route = null)] HttpRequest req,
+        [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequest req,
         ILogger log)
         {
             string firstName = req.Query["first_name"];
